@@ -53,8 +53,8 @@
     
     #qt的东西，如果你需要图形界面的话
     sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
-    
 
+安装Berkeley DB  4.8版本，我编译装的5.2，这个只牵扯到钱包的兼容性，不过在我的ubuntu上钱包运行的也正常
 安装Berkeley DB  4.8版本，我编译装的5.2，这个只牵扯到钱包的兼容性，不过在我的ubuntu上钱包运行的也正常
 
     #官方说这个地址有编译好的ubuntu Berkeley DB4.8
@@ -101,8 +101,8 @@
                 ├── bitcoind.1
                 └── bitcoin-tx.1
 
-
-
+其中bin/bitcoind 是节点服务程序, 运行起来你就建立了一个比特币节点，而且默认会在~/.bitcoin下同步全网链上数据, 少说也有几百个G吧, 最好还是外挂个硬盘，在你准备存储比特币网络数据的文件夹下创建bitcoin.conf, 并且写入你的json-rpc账户密码
+其中bin/bitcoind 是节点服务程序, 运行起来你就建立了一个比特币节点，而且默认会在~/.bitcoin下同步全网链上数据, 少说也有几百个G吧, 最好还是外挂个硬盘，在你准备存储比特币网络数据的文件夹下创建bitcoin.conf, 并且写入你的json-rpc账户密码
 其中bin/bitcoind 是节点服务程序, 运行起来你就建立了一个比特币节点，而且默认会在~/.bitcoin下同步全网链上数据, 少说也有几百个G吧, 最好还是外挂个硬盘，在你准备存储比特币网络数据的文件夹下创建bitcoin.conf, 并且写入你的json-rpc账户密码
 
     rpcuser=your_pass_username
@@ -150,8 +150,7 @@
      #在/etc/fstab中添加
      /dev/sda1 /mnt/myusbdrive ntfs-3g defaults,noexec,umask=0000 0 0
      #重启就ok
-
-
+![WechatIMG9310](https://github.com/FMLS/blog/blob/master/bitcoind_20180318/WechatIMG9310.jpeg)
 
 开始与节点交互
 
@@ -184,8 +183,8 @@ bin/bitcoin-cli 是一个命令行工具，通过json-rpc与我们的节点进�
       "relayfee": 0.00001000,
       "warnings": ""
     }
-    
 
+获取账户所有地址
 获取账户所有地址
 
     ./bitcoin-cli getaddressesbyaccount ''                                
@@ -212,41 +211,41 @@ bin/bitcoin-cli 是一个命令行工具，通过json-rpc与我们的节点进�
 解码一笔交易，获得一笔交易的详细信息
 
 	这里面可以看到此交易是区块上第一个交易，是系统对于矿工的奖励50个btc，如果你看一个最近产生的区块，奖励已经是25个btc了，如果是普通用户交易，vin内部字段也是不一样的，这是基于btc的TUXO模型，这个后面的文章会详细介绍
+	
+	./bitcoin-cli  decoderawtransaction 01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff0804ffff001d02fd04ffffffff0100f2052a01000000434104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac00000000
+	{
+	  "txid": "fe28050b93faea61fa88c4c630f0e1f0a1c24d0082dd0e10d369e13212128f33",
+	  "hash": "fe28050b93faea61fa88c4c630f0e1f0a1c24d0082dd0e10d369e13212128f33",
+	  "version": 1,
+	  "size": 135,
+	  "vsize": 135,
+	  "locktime": 0,
+	  "vin": [
+	    {
+	      "coinbase": "04ffff001d02fd04",
+	      "sequence": 4294967295
+	    }
+	  ],
+	  "vout": [
+	    {
+	      "value": 50.00000000,
+	      "n": 0,
+	      "scriptPubKey": {
+	        "asm": "04f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446a OP_CHECKSIG",
+	        "hex": "4104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac",
+	        "reqSigs": 1,
+	        "type": "pubkey",
+	        "addresses": [
+	          "1BW18n7MfpU35q4MTBSk8pse3XzQF8XvzT"
+	        ]
+	      }
+	    }
+	  ]
+	}
+	
 
-    ./bitcoin-cli  decoderawtransaction 01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff0804ffff001d02fd04ffffffff0100f2052a01000000434104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac00000000
-    {
-      "txid": "fe28050b93faea61fa88c4c630f0e1f0a1c24d0082dd0e10d369e13212128f33",
-      "hash": "fe28050b93faea61fa88c4c630f0e1f0a1c24d0082dd0e10d369e13212128f33",
-      "version": 1,
-      "size": 135,
-      "vsize": 135,
-      "locktime": 0,
-      "vin": [
-        {
-          "coinbase": "04ffff001d02fd04",
-          "sequence": 4294967295
-        }
-      ],
-      "vout": [
-        {
-          "value": 50.00000000,
-          "n": 0,
-          "scriptPubKey": {
-            "asm": "04f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446a OP_CHECKSIG",
-            "hex": "4104f5eeb2b10c944c6b9fbcfff94c35bdeecd93df977882babc7f3a2cf7f5c81d3b09a68db7f0e04f21de5d4230e75e6dbe7ad16eefe0d4325a62067dc6f369446aac",
-            "reqSigs": 1,
-            "type": "pubkey",
-            "addresses": [
-              "1BW18n7MfpU35q4MTBSk8pse3XzQF8XvzT"
-            ]
-          }
-        }
-      ]
-    }
-    
-
-
-
+获得这笔交易所在区块的信息
+获得这笔交易所在区块的信息
 获得这笔交易所在区块的信息
 
     ./bitcoin-cli  getblock 00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09
@@ -272,82 +271,82 @@ bin/bitcoin-cli 是一个命令行工具，通过json-rpc与我们的节点进�
       "previousblockhash": "0000000008e647742775a230787d66fdf92c46a48c896bfbc85cdc8acc67e87d",
       "nextblockhash": "00000000a2887344f8db859e372e7e4bc26b23b9de340f725afbf2edb265b4c6"
     }
-    
 
+通过高度获取区块哈希
 通过高度获取区块哈希
 
 	我们获取高度为1000的区块的哈希值，可以看到结果是和上面那条命令的哈希值相同
-
-    ./bitcoin-cli  getblockhash 1000
-    00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09
-
+	
+	./bitcoin-cli  getblockhash 1000
+	00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09
+	
 	借此我们看下中本聪😈创世区块的内容
-
-    ./bitcoin-cli getbloackhash 0
-    000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
-    
-    ./bitcoin-cli getblock 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
-    {
-      "hash": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
-      "confirmations": 1,
-      "strippedsize": 285,
-      "size": 285,
-      "weight": 1140,
-      "height": 0,
-      "version": 1,
-      "versionHex": "00000001",
-      "merkleroot": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
-      "tx": [
-        "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"
-      ],
-      "time": 1231006505,
-      "mediantime": 1231006505,
-      "nonce": 2083236893,
-      "bits": "1d00ffff",
-      "difficulty": 1,
-      "chainwork": "0000000000000000000000000000000000000000000000000000000100010001"
-    }
-    
-
+	
+	./bitcoin-cli getbloackhash 0
+	000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
+	
+	./bitcoin-cli getblock 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
+	{
+	  "hash": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+	  "confirmations": 1,
+	  "strippedsize": 285,
+	  "size": 285,
+	  "weight": 1140,
+	  "height": 0,
+	  "version": 1,
+	  "versionHex": "00000001",
+	  "merkleroot": "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+	  "tx": [
+	    "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"
+	  ],
+	  "time": 1231006505,
+	  "mediantime": 1231006505,
+	  "nonce": 2083236893,
+	  "bits": "1d00ffff",
+	  "difficulty": 1,
+	  "chainwork": "0000000000000000000000000000000000000000000000000000000100010001"
+	}
+	
+	
 	接下来我们想获取这个交易的详细信息，可是系统提示创世块禁止检索，这是因为创世交易没有添加进交易数据库中，所以从你本身的节点是检索不到的，至于为什么，这是中本聪😈自己的设计
-
-    ./bitcoin-cli -datadir=/media/liuyang/My\ Passport/bitcoin_data/ getrawtransaction 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
-    
-    error code: -5
-    error message:
-    The genesis block coinbase is not considered an ordinary transaction and cannot be retrieved
-
+	
+	./bitcoin-cli -datadir=/media/liuyang/My\ Passport/bitcoin_data/ getrawtransaction 4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b
+	
+	error code: -5
+	error message:
+	The genesis block coinbase is not considered an ordinary transaction and cannot be retrieved
+	
 	google了一下有人说这笔交易被硬编码到了最近的bitcoin core client中, 这是一份json dump,  有空看下这块的代码，找找写在哪里了.
+	
+	{
+	    "txid" : "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
+	    "version" : 1,
+	    "locktime" : 0,
+	    "vin" : [
+	        {
+	            "coinbase" : "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73",
+	            "sequence" : 4294967295
+	        }
+	    ],
+	    "vout" : [
+	        {
+	            "value" : 50.00000000,
+	            "n" : 0,
+	            "scriptPubKey" : {
+	                "asm" : "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f OP_CHECKSIG",
+	                "hex" : "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac",
+	                "reqSigs" : 1,
+	                "type" : "pubkey",
+	                "addresses" : [
+	                    "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+	                ]
+	            }
+	        }
+	    ]
+	}
 
-    {
-        "txid" : "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b",
-        "version" : 1,
-        "locktime" : 0,
-        "vin" : [
-            {
-                "coinbase" : "04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73",
-                "sequence" : 4294967295
-            }
-        ],
-        "vout" : [
-            {
-                "value" : 50.00000000,
-                "n" : 0,
-                "scriptPubKey" : {
-                    "asm" : "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f OP_CHECKSIG",
-                    "hex" : "4104678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5fac",
-                    "reqSigs" : 1,
-                    "type" : "pubkey",
-                    "addresses" : [
-                        "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
-                    ]
-                }
-            }
-        ]
-    }
-
-
-
+总结
+总结
 总结
 
 本篇我们从编译安装比特币节点开始，用命令行工具与我们搭建的节点进行了一些简单的交互，简单地探索了一下链上区块，其实还有非常多的操作没有介绍，这些大家可以自己多尝试一下, JSON-RPC返回的json格式数据也非常有益于我们编程去做一些链上数据处理，比如地址关联分析，交易关系可视化等都非常有趣.
