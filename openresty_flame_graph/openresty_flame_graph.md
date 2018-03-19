@@ -93,7 +93,7 @@ export PATH=$PWD:$PATH
 
 # 火焰图示例
 
-![a](https://github.com/FMLS/blog/blob/master/openresty_flame_graph/a.avg)
+![a](https://github.com/FMLS/blog/blob/master/openresty_flame_graph/a.svg)
 
 可以看出上面的图中match函数占用了大量的时间, 可以删除发生在common_func.lua文件的_M.split函数调用栈，match函数是lua内置的builtin#85号函数，lua的内置正则函数比较低效，应该尽量避免使用
 
