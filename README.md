@@ -8,6 +8,10 @@
 
 [python2 3版本主要区别](https://github.com/FMLS/blog/blob/master/difference_py2_3.md)
 
+[php case](https://github.com/FMLS/blog/blob/master/php_case.md)
+
+[openresty case](https://github.com/FMLS/blog/blob/master/openresty_case.md)
+
 
 
 
