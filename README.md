@@ -6,5 +6,9 @@
 
 [深分页问题](https://github.com/FMLS/blog/blob/master/deep_pages/deep_pages.md)
 
+[python2 3版本主要区别](https://github.com/FMLS/blog/blob/master/difference_py2_3.md)
+
+
+
 
 
