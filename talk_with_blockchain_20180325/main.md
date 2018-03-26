@@ -10,7 +10,7 @@
 
 大家学过历史都知道, 人类文明早起的原始社会, 人们都是通过物品直接交换来满足自己的需求, 这种简单粗暴模式的弊端很明显: 1. 不灵活。A想获得B的牛肉, B想要一份草药, 但A只有火药可以作为交换, 这样就需要一个需要火药并且用草药和A交换的人, 不然AB无法成交。2. 物品价值无法细致衡量, 到底1kg草药换?kg牛肉呢?
 
-![wa](/Users/liuyang/Project/self/blog/talk_with_blockchain_20180325/swap.png)
+![wa](https://github.com/FMLS/blog/blob/master/talk_with_blockchain_20180325/swap.png)
 
 为了解决这些问题出现了信用和现金两种解决方案:
 
