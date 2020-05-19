@@ -1,4 +1,5 @@
 # 0x01的博客
+[Mysql 问题总结](https://github.com/FMLS/blog/blob/master/mysql_case.md)
 
 [从运行bitcoind开始](https://github.com/FMLS/blog/blob/master/bitcoind_20180318/bitcoind.md)
 
