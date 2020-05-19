@@ -31,4 +31,7 @@ DROP USER 'username'@'host';
 # 问题
 
 ## 创建用户后连接报错 ERROR 1045 (28000): Access denied for user 'bill'@'localhost' (using password: YES)
+需要删除匿名用户
+`drop user ''@'localhost';`
+https://dev.mysql.com/doc/refman/8.0/en/connection-access.html
 
