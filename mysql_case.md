@@ -27,3 +27,8 @@ SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
 ```
 DROP USER 'username'@'host';
 ```
+
+# 问题
+
+## 创建用户后连接报错 ERROR 1045 (28000): Access denied for user 'bill'@'localhost' (using password: YES)
+
